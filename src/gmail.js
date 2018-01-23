@@ -40,20 +40,24 @@ var Gmail_ = function(localJQuery) {
     };
 
     api.version           = "0.6.4";
-    api.tracker.globals   = typeof GLOBALS !== "undefined"
-        ? GLOBALS
-        : (
-            typeof(window) !== "undefined" && window.opener !== null && typeof window.opener.GLOBALS !== "undefined"
-                ? window.opener.GLOBALS
-                : []
-        );
-    api.tracker.view_data = typeof VIEW_DATA !== "undefined"
-        ? VIEW_DATA
-        : (
-            typeof(window) !== "undefined" && window.opener !== null && typeof window.opener.VIEW_DATA !== "undefined"
-                ? window.opener.VIEW_DATA
-                : []
-        );
+    try {
+        api.tracker.globals   = typeof GLOBALS !== "undefined"
+            ? GLOBALS
+            : (
+                typeof(window) !== "undefined" && window.opener !== null && typeof window.opener.GLOBALS !== "undefined"
+                    ? window.opener.GLOBALS
+                    : []
+            );
+        api.tracker.view_data = typeof VIEW_DATA !== "undefined"
+            ? VIEW_DATA
+            : (
+                typeof(window) !== "undefined" && window.opener !== null && typeof window.opener.VIEW_DATA !== "undefined"
+                    ? window.opener.VIEW_DATA
+                    : []
+            );
+    } catch (err) {
+        console.error(err);
+    }
     api.tracker.ik        = api.tracker.globals[9] || "";
     api.tracker.hangouts  = undefined;
 
