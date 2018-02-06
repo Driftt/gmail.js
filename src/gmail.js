@@ -1641,7 +1641,7 @@ var Gmail_ = function(localJQuery) {
         method  = method || "GET";
 
         link = encodeURI(link).replace(/#-#-#/gi, "%23");
-        var config = {type: method, url: link, async: false};
+        var config = {type: method, url: link, async: false, dataType:"text"};
         if (disable_cache) {
             config.cache = false;
         }
@@ -1770,7 +1770,7 @@ var Gmail_ = function(localJQuery) {
     api.helper.get.visible_emails_pre = function() {
         var page = api.get.current_page();
         var url = window.location.origin + window.location.pathname + "?ui=2&ik=" + api.tracker.ik+"&rid=" + api.tracker.rid + "&view=tl&num=120&rt=1";
-        var start = $(".aqK:visible .Dj").find("span:first").text().replace(",", "").replace(".", "");
+        var start = $(".aqK:visible .Dj").find("span:first").text().replace(",", "").replace(".", "").split('–')[0];
         if (start) {
             start = parseInt(start - 1);
             url += "&start=" + start +
